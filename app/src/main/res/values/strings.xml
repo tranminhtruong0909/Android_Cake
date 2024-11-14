@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cake</string>
+    <string name="intro_text"><font color="#000000">Satisfy Your Cravings With Our</font>\n<font color="#854811">Fresh Cakes, Donuts</font>\n<font color="#000000">and</font><font color="#854811"> Pastries</font></string>
+    <string name="intro_subtitle">Our bakery offers traditional flavors \nEach pastry is handcrafted \nVisit us and enjoy!</string>
+    <string name="intro_signin" translatable="false">Already have an account?<font color="#854811"> Sign in</font></string>
+    <string name="default_web_client_id" translatable="false">142776206863-lh0divjao8l6n09vh4lmf4s0c9tq201n.apps.googleusercontent.com</string>
+
+
+</resources>
