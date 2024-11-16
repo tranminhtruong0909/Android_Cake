@@ -29,7 +29,7 @@ public class IntroActivity extends AppCompatActivity {
 
         // Nút chuyển sang LoginActivity
         binding.startBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(IntroActivity.this, LoginActivity.class);
+            Intent intent = new Intent(IntroActivity.this, BaseActivity.class);
             startActivity(intent);
         });
 

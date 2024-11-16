@@ -3,15 +3,15 @@ package com.example.cake.Model;
 public class Category {
     private String id; // ID của danh mục
     private String name; // Tên danh mục
-    private String description; // Mô tả danh mục
+    private String imageUrl; // URL của hình ảnh
 
     // Constructor
     public Category() {}
 
-    public Category(String id, String name, String description) {
+    public Category(String id, String name, String imageUrl) {
         this.id = id;
         this.name = name;
-        this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     // Getters
@@ -23,8 +23,8 @@ public class Category {
         return name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     // Setters
@@ -36,7 +36,7 @@ public class Category {
         this.name = name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

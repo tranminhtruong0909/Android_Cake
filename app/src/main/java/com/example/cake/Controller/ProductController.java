@@ -1,41 +1,38 @@
 package com.example.cake.Controller;
 
 import com.example.cake.Model.Product;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.CollectionReference;
+
+import java.util.List;
 
 public class ProductController {
-    private DatabaseReference productRef;
+    private FirebaseFirestore db;
+    private CollectionReference productRef;
 
     public ProductController() {
-        // Initialize Realtime Database and reference to "products" node
-        productRef = FirebaseDatabase.getInstance().getReference("products");
+        // Khởi tạo Firestore và Collection Reference
+        db = FirebaseFirestore.getInstance();
+        productRef = db.collection("products");
     }
 
-    // Thêm sản phẩm
-    public void addProduct(Product product) {
-        String productId = productRef.push().getKey(); // Generate a unique key for the product
-        if (productId != null) {
-            productRef.child(productId).setValue(product);
-        }
+    // Lấy danh sách sản phẩm
+    public void getProducts(OnProductsLoadedListener listener) {
+        productRef.get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Product> products = queryDocumentSnapshots.toObjects(Product.class);
+                    listener.onProductsLoaded(products);
+                })
+                .addOnFailureListener(e -> {
+                    listener.onProductsLoaded(null); // Trả về null nếu có lỗi
+                });
     }
 
-    // Sửa sản phẩm
-    public void updateProduct(String productId, Product product) {
-        productRef.child(productId).setValue(product);
+
+    // Interface cho việc tải dữ liệu sản phẩm
+    public interface OnProductsLoadedListener {
+        void onProductsLoaded(List<Product> products);
     }
 
-    // Xóa sản phẩm
-    public void deleteProduct(String productId) {
-        productRef.child(productId).removeValue();
-    }
 
-    // Lấy tất cả sản phẩm
-    public void getAllProducts() {
-        productRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                // Xử lý dữ liệu sản phẩm
-            }
-        });
-    }
 }

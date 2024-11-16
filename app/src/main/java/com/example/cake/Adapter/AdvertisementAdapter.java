@@ -28,7 +28,7 @@ public class AdvertisementAdapter extends RecyclerView.Adapter<AdvertisementAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate layout cho mỗi item trong RecyclerView
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_advertisement, parent, false);
         return new ViewHolder(view);
     }
@@ -37,9 +37,6 @@ public class AdvertisementAdapter extends RecyclerView.Adapter<AdvertisementAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Advertisement advertisement = advertisementList.get(position);
 
-        // Hiển thị tiêu đề và mô tả quảng cáo
-        holder.titleTextView.setText(advertisement.getTitle());
-        holder.contentTextView.setText(advertisement.getContent());
 
         // Lấy đường dẫn ảnh từ Firebase Storage
         String imageUrl = advertisement.getImageUrl();
@@ -57,14 +54,13 @@ public class AdvertisementAdapter extends RecyclerView.Adapter<AdvertisementAdap
 
     // ViewHolder để lưu các view của mỗi item trong RecyclerView
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView, contentTextView;
+
         ImageView adImageView; // ImageView để hiển thị ảnh quảng cáo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // Khởi tạo các view trong layout item
-            titleTextView = itemView.findViewById(R.id.textViewTitle);
-            contentTextView = itemView.findViewById(R.id.textViewContent);
+
             adImageView = itemView.findViewById(R.id.adImageView);  // Khởi tạo ImageView
         }
     }
