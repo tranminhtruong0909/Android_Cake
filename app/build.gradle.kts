@@ -52,7 +52,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.glide)
     implementation(libs.dotsindicator)
-
+    implementation ("androidx.annotation:annotation:1.6.0")
     // Thêm Kotlin runtime nếu cần thiết
     implementation("org.jetbrains.kotlin:kotlin-script-runtime:1.8.0") // Thay 1.8.0 với phiên bản Kotlin của bạn
 

@@ -1,5 +1,6 @@
 package com.example.cake.Adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cake.Activity.DetailProductActivity;
 import com.example.cake.Model.Product;
 import com.example.cake.R;
 
@@ -41,7 +43,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         Glide.with(holder.itemView.getContext())
                 .load(product.getImageUrl())
                 .into(holder.imageView);
+
+        // Thêm sự kiện nhấn vào item
+        holder.itemView.setOnClickListener(v -> {
+            // Khi nhấn vào item, chuyển đến Activity khác và truyền ID sản phẩm
+            Intent intent = new Intent(holder.itemView.getContext(), DetailProductActivity.class);
+            intent.putExtra("productId", product.getId()); // Truyền ID sản phẩm
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
+
 
     @Override
     public int getItemCount() {

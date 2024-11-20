@@ -1,8 +1,10 @@
 package com.example.cake.Controller;
 
+
 import com.example.cake.Model.Product;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.CollectionReference;
+
 
 import java.util.List;
 
@@ -11,12 +13,11 @@ public class ProductController {
     private CollectionReference productRef;
 
     public ProductController() {
-        // Khởi tạo Firestore và Collection Reference
         db = FirebaseFirestore.getInstance();
         productRef = db.collection("products");
     }
 
-    // Lấy danh sách sản phẩm
+
     public void getProducts(OnProductsLoadedListener listener) {
         productRef.get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -33,6 +34,5 @@ public class ProductController {
     public interface OnProductsLoadedListener {
         void onProductsLoaded(List<Product> products);
     }
-
 
 }

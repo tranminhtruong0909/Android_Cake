@@ -15,11 +15,10 @@
         android:text="Quản Lý Nhân Sự"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="16dp"/>
 
     <!-- Hiển thị thời gian hiện tại -->
     <TextClock
@@ -28,94 +27,106 @@
         android:layout_height="wrap_content"
         android:format12Hour="hh:mm a"
         android:textSize="18sp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="16dp"/>
 
     <!-- Họ tên nhân viên -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilHoTen"
+        android:id="@+id/layoutHoTen"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Họ tên nhân viên"
-        app:layout_constraintTop_toBottomOf="@id/tcCurrentTime"
+        app:layout_constraintTop_toBottomOf="@+id/tcCurrentTime"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etHoTen"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Ngày sinh -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilNgaySinh"
+        android:id="@+id/layoutNgaySinh"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Ngày sinh (dd/mm/yyyy)"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/tilHoTen"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHoTen"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNgaySinh"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Chức vụ -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilChucVu"
+        android:id="@+id/layoutChucVu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Chức vụ"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/tilNgaySinh"
+        app:layout_constraintTop_toBottomOf="@+id/layoutNgaySinh"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etChucVu"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Số điện thoại -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilSoDienThoai"
+        android:id="@+id/layoutSoDienThoai"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Số điện thoại"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/tilChucVu"
+        app:layout_constraintTop_toBottomOf="@+id/layoutChucVu"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etSoDienThoai"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Email -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmail"
+        android:id="@+id/layoutEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/tilSoDienThoai"
+        app:layout_constraintTop_toBottomOf="@+id/layoutSoDienThoai"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -126,9 +137,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Lưu Thông Tin"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tilEmail"
+        app:layout_constraintTop_toBottomOf="@+id/layoutEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
