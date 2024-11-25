@@ -1,19 +1,14 @@
 package com.example.cake.Activity;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -36,6 +31,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 import com.example.cake.Controller.AdvertisementController;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +53,10 @@ public class BaseActivity extends AppCompatActivity {
     private TextView textViewUserName;
     private HorizontalScrollView horizontalscrollviewCategoryHome;
     private RecyclerView recyclerViewProductsHome;
-    private RecyclerView recyclerViewProductsHome2;
+
+
+
+    private LinearLayout imageContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +71,9 @@ public class BaseActivity extends AppCompatActivity {
         horizontalscrollviewCategoryHome = findViewById(R.id.viewPagerCategories);
 
         textViewUserName = findViewById(R.id.textView5);
+
+
+
 
         // Khởi tạo controllers
         advertisementController = new AdvertisementController();
@@ -126,6 +128,11 @@ public class BaseActivity extends AppCompatActivity {
             // Người dùng chưa đăng nhập
             textViewUserName.setText("User not logged in");
         }
+
+
+
+
+
 
 
 
@@ -191,6 +198,8 @@ public class BaseActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 
