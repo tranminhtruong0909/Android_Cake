@@ -71,6 +71,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.gms:google-services")
 
+    implementation ("com.google.android.gms:play-services-maps:18.0.2")  // Thêm dòng này để tích hợp Google Maps
+    implementation ("com.google.android.gms:play-services-location:18.0.0")  // Thêm dòng này nếu bạn cần sử dụng GPS
 
 
 

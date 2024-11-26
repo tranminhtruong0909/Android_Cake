@@ -7,6 +7,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -51,6 +52,8 @@ public class BaseActivity extends AppCompatActivity {
     private TextView textViewUserName;
     private HorizontalScrollView horizontalscrollviewCategoryHome;
     private RecyclerView recyclerViewProductsHome;
+    private LinearLayout profile;
+    private LinearLayout explorer;
 
     private LinearLayout imageContainer;
 
@@ -65,6 +68,10 @@ public class BaseActivity extends AppCompatActivity {
         dotsIndicator = findViewById(R.id.dotIndicator);
         recyclerViewProductsHome = findViewById(R.id.recyclerViewProductsHome);
         horizontalscrollviewCategoryHome = findViewById(R.id.viewPagerCategories);
+
+        profile = findViewById(R.id.profile);
+
+        explorer = findViewById(R.id.explorer);
 
         textViewUserName = findViewById(R.id.textView5);
 
@@ -119,6 +126,26 @@ public class BaseActivity extends AppCompatActivity {
             // Người dùng chưa đăng nhập
             textViewUserName.setText("User not logged in");
         }
+
+        // Thêm OnClickListener cho textViewUserName
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Mở UserInfoActivity khi người dùng nhấn vào TextView
+                Intent intent = new Intent(BaseActivity.this, UserInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Thêm OnClickListener cho textViewUserName
+        explorer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Mở UserInfoActivity khi người dùng nhấn vào TextView
+                Intent intent = new Intent(BaseActivity.this, AboutShopActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadAdvertisements() {
