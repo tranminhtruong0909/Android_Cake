@@ -43,8 +43,6 @@ public class BaseActivity extends AppCompatActivity {
     private AdvertisementAdapter advertisementAdapter;
     private List<Advertisement> advertisementList = new ArrayList<>();
     private AdvertisementController advertisementController;
-    private RecyclerView recyclerView;
-    private CategoryAdapter categoryAdapter;
     private List<Category> categoryList = new ArrayList<>();
     private CategoryController categoryController;
     private ProductAdapter productAdapter;
@@ -53,8 +51,6 @@ public class BaseActivity extends AppCompatActivity {
     private TextView textViewUserName;
     private HorizontalScrollView horizontalscrollviewCategoryHome;
     private RecyclerView recyclerViewProductsHome;
-
-
 
     private LinearLayout imageContainer;
 
@@ -72,9 +68,6 @@ public class BaseActivity extends AppCompatActivity {
 
         textViewUserName = findViewById(R.id.textView5);
 
-
-
-
         // Khởi tạo controllers
         advertisementController = new AdvertisementController();
         categoryController = new CategoryController();
@@ -87,8 +80,6 @@ public class BaseActivity extends AppCompatActivity {
 
         // Lấy dữ liệu sản phẩm từ Firebase
         loadProducts();
-
-
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -128,16 +119,6 @@ public class BaseActivity extends AppCompatActivity {
             // Người dùng chưa đăng nhập
             textViewUserName.setText("User not logged in");
         }
-
-
-
-
-
-
-
-
-
-
     }
 
     private void loadAdvertisements() {
@@ -198,9 +179,5 @@ public class BaseActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 
 }

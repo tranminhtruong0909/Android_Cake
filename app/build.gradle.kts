@@ -53,10 +53,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.dotsindicator)
     implementation ("androidx.annotation:annotation:1.6.0")
-    // Thêm Kotlin runtime nếu cần thiết
     implementation("org.jetbrains.kotlin:kotlin-script-runtime:1.8.0") // Thay 1.8.0 với phiên bản Kotlin của bạn
-
-    // Firebase dependencies
     implementation(platform("com.google.firebase:firebase-bom:33.2.0")) // BoM của Firebase
     implementation(libs.firebase.auth) // Thư viện Firebase Authentication
 
@@ -73,6 +70,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.gms:google-services")
+
 
 
 

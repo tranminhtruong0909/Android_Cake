@@ -18,6 +18,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.cake.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -63,7 +66,9 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
-                        updateUI(user);
+                        if (user != null) {
+                            checkUserRole(user);
+                        }
                     } else {
                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                         Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -72,11 +77,50 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    private void checkUserRole(FirebaseUser user) {
+        // Lấy UID của người dùng hiện tại
+        String userId = user.getUid();
+
+        // Truy vấn Firestore để lấy thông tin role của người dùng
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userRef = db.collection("users").document(userId);
+
+        userRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    String role = document.getString("role");
+
+                    // Kiểm tra giá trị của trường role và xử lý tương ứng
+                    if ("admin".equals(role)) {
+                        // Nếu là admin, chuyển sang BaseAdminActivity
+
+                        Intent intent = new Intent(LoginActivity.this, BaseAdminActivity.class);
+                        startActivity(intent);
+                         // Kết thúc activity login để không quay lại được
+                    } else if ("user".equals(role)) {
+                        // Nếu là user, chuyển sang BaseActivity
+
+                        Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
+                        startActivity(intent);
+                        // Kết thúc activity login để không quay lại được
+                    }
+                } else {
+                    Log.d(TAG, "No such document");
+                }
+            } else {
+                Log.w(TAG, "Failed to get role", task.getException());
+            }
+        });
+    }
+
     private void updateUI(FirebaseUser user) {
         if (user != null) {
+            // Chuyển tới activity chính sau khi đăng nhập thành công
             Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
             startActivity(intent);
             finish();
         }
     }
+
 }

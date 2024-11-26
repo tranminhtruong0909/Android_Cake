@@ -74,14 +74,15 @@ public class SignupActivity extends AppCompatActivity {
                                 // Lấy UID của người dùng từ Firebase Authentication
                                 String uid = firebaseUser.getUid();
 
-                                // Tạo đối tượng User
+                                // Tạo đối tượng User với role là "user"
                                 User user = new User(
                                         uid, // Lấy UID từ Firebase Authentication
                                         nameText,
                                         addressText,
                                         phoneNumberText,
                                         ageNumber,
-                                        emailText
+                                        emailText,
+                                        "user" // Mặc định là user
                                 );
 
                                 // Gọi UserController để lưu User vào Firestore

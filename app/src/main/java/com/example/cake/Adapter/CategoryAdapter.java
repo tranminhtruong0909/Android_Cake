@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.cake.Activity.Category_detail;
+import com.example.cake.Activity.CategoryDetail;
 import com.example.cake.Model.Category;
 import com.example.cake.R;
 
@@ -57,7 +57,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             Toast.makeText(holder.itemView.getContext(), "Bạn đã ấn vào loại sản phẩm", Toast.LENGTH_SHORT).show();
 
             // Chuyển đến Activity hiển thị chi tiết loại sản phẩm
-            Intent intent = new Intent(holder.itemView.getContext(), Category_detail.class);
+            Intent intent = new Intent(holder.itemView.getContext(), CategoryDetail.class);
             intent.putExtra("categoryName", category.getName());  // Truyền tên danh mục
             intent.putExtra("categoryImage", category.getImageUrl());  // Truyền URL hình ảnh
             intent.putExtra("categoryId", category.getId());
@@ -103,7 +103,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 Toast.makeText(context, "Bạn đã ấn vào loại sản phẩm", Toast.LENGTH_SHORT).show();
 
                 // Chuyển đến Activity chi tiết loại sản phẩm
-                Intent intent = new Intent(context, Category_detail.class);
+                Intent intent = new Intent(context, CategoryDetail.class);
                 intent.putExtra("categoryName", category.getName());
                 intent.putExtra("categoryImage", category.getImageUrl());
                 context.startActivity(intent);

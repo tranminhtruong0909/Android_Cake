@@ -13,7 +13,7 @@ public class UserController {
     }
 
     public void addUser(User user, OnUserCallback callback) {
-        db.collection("users").document(user.getUid())
+        db.collection("users").document(user.getUidd())
                 .set(user)
                 .addOnSuccessListener(aVoid -> callback.onSuccess("User added successfully"))
                 .addOnFailureListener(e -> callback.onFailure(e.getMessage()));
