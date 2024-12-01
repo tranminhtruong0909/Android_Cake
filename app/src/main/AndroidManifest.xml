@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +15,19 @@
         android:theme="@style/Theme.Cake"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.ProductManager_Add"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ProductManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Helper.ProductHelper"
+            android:exported="false" />
+
+        <activity
+            android:name=".Adapter.ProductAdminAdapter"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AboutShopActivity"
             android:exported="false" />
         <activity
@@ -22,9 +36,7 @@
         <activity
             android:name=".Activity.BaseAdminActivity"
             android:exported="false" />
-        <activity
-            android:name=".Activity.ProductAdminActivity"
-            android:exported="false" />
+
         <activity
             android:name=".Activity.CartActivity"
             android:exported="false" />
@@ -38,13 +50,13 @@
             android:name=".Activity.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activity.BaseActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.BaseActivity"
+            android:name=".Activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.IntroActivity"
@@ -55,7 +67,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

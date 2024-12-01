@@ -1,5 +1,6 @@
 package com.example.cake.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -29,8 +30,6 @@ public class BaseAdminActivity extends AppCompatActivity {
         productCardView = findViewById(R.id.product);
         categoryCardView = findViewById(R.id.category);
         userCardView = findViewById(R.id.user);
-
-
         // Thay đổi màu thanh trạng thái thành trong suốt
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -39,12 +38,9 @@ public class BaseAdminActivity extends AppCompatActivity {
         }
 
         // Set click listeners for the CardViews
-        productCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle product management click
-                Toast.makeText(BaseAdminActivity.this, "Quản Lý Sản Phẩm", Toast.LENGTH_SHORT).show();
-            }
+        productCardView.setOnClickListener( v -> {
+            Intent intent = new Intent(BaseAdminActivity.this, ProductManagerActivity.class);
+            startActivity(intent);
         });
 
         categoryCardView.setOnClickListener(new View.OnClickListener() {

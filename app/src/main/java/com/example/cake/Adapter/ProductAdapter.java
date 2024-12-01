@@ -1,6 +1,7 @@
 package com.example.cake.Adapter;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         this.productList = productList;
     }
 
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,6 +36,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = productList.get(position);
+
+
 
         // Gán dữ liệu sản phẩm vào ViewHolder
         holder.nameTextView.setText(product.getName());
@@ -68,6 +72,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             nameTextView = itemView.findViewById(R.id.productNameTextView);
             priceTextView = itemView.findViewById(R.id.productPriceTextView);
             imageView = itemView.findViewById(R.id.productImageView);
+        }
+    }
+
+    public void updateProductList(List<Product> newList) {
+        if (newList != null) { // Kiểm tra newList không null
+            productList.clear(); // Xóa danh sách cũ
+            productList.addAll(newList); // Thêm sản phẩm mới vào danh sách
+            notifyDataSetChanged(); // Cập nhật giao diện
+        } else {
+            Log.e("ProductAdapter", "Cannot update to a null list");
         }
     }
 }

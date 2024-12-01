@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FDFDFD"
     tools:context=".Activity.AboutShopActivity">
 
     <!-- Header image -->
@@ -12,11 +12,36 @@
         android:id="@+id/shopImage"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/hours"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        android:scaleType="centerCrop" />
+    <!-- Shop Name -->
+    <TextView
+        android:id="@+id/shopName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Birthday Cake Shop"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#FF6F61"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintTop_toBottomOf="@id/shopImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="16dp" />
+
+    <!-- Divider -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="200dp"
+        android:layout_height="2dp"
+        android:background="#FF6F61"
+        app:layout_constraintTop_toBottomOf="@id/shopName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
 
     <!-- Shop Introduction -->
     <TextView
@@ -24,11 +49,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Welcome to Our Birthday Cake Shop!"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shopImage"
+        app:layout_constraintTop_toBottomOf="@id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="16dp"
         android:textColor="#333333" />
@@ -52,14 +77,33 @@
         android:id="@+id/contactInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Contact us: 123-456-7890 | email@example.com"
+        android:text="Contact us: 123-456-7890\nEmail: email@example.com"
         android:textSize="16sp"
+        android:lineSpacingExtra="4sp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shopDescription"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="16dp"
         android:textColor="#333333" />
 
-
+    <!-- Call To Action Button -->
+    <Button
+        android:id="@+id/btnVisitShop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Visit Our Shop"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FF6F61"
+        android:textColor="#FFFFFF"
+        android:paddingVertical="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contactInfo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="16dp"
+        android:fontFamily="sans-serif" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

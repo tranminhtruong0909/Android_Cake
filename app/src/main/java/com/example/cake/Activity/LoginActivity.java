@@ -1,12 +1,14 @@
 package com.example.cake.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
     private static final String TAG = "LoginActivity";
-
+    public static String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,12 +58,29 @@ public class LoginActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         View decor = window.getDecorView();
         decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE);
+        boolean rememberMe = sharedPreferences.getBoolean("rememberMe", false);
+        if (rememberMe) {
+            String email = sharedPreferences.getString("email", "");
+            String password = sharedPreferences.getString("password", "");
+            emailEditText.setText(email);
+            passwordEditText.setText(password);
+        }
     }
 
     private void signInWithEmailPassword() {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
+        if (((CheckBox) findViewById(R.id.remember_me)).isChecked()) {
+            SharedPreferences sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("email", email);
+            editor.putString("password", password);
+            editor.putBoolean("rememberMe", true);
+            editor.apply();
+        }
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -79,7 +98,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkUserRole(FirebaseUser user) {
         // Lấy UID của người dùng hiện tại
-        String userId = user.getUid();
+        String userIdd = user.getUid();
+        userId = userIdd;
 
         // Truy vấn Firestore để lấy thông tin role của người dùng
         FirebaseFirestore db = FirebaseFirestore.getInstance();

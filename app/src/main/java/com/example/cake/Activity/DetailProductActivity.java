@@ -1,7 +1,11 @@
 package com.example.cake.Activity;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+
 import com.example.cake.Controller.ProductController;
 import com.example.cake.Model.Product;
 import com.example.cake.R;
@@ -16,10 +21,12 @@ import com.example.cake.R;
 public class DetailProductActivity extends AppCompatActivity {
 
     private TextView txtTitle, txtPrice, txtDescription;
-    private ImageView imgProduct;
+    private ImageView imgProduct, btnCart;
 
     private ProductController productController;
     private TextView btn250g, btn500g;
+    public String userId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +44,46 @@ public class DetailProductActivity extends AppCompatActivity {
         TextView textReduce = findViewById(R.id.text_reduce);
         TextView textincrease = findViewById(R.id.text_increase);
         EditText etQuantity = findViewById(R.id.et_quantity);
+        btnCart = findViewById(R.id.Btncart);
         // Nhận productId từ Intent
         String productId = getIntent().getStringExtra("productId");
 
         // Khởi tạo ProductController
         productController = new ProductController();
 
+        userId = LoginActivity.userId;
 
+        // Sự kiện nhấn nút giỏ hàng
+        btnCart.setOnClickListener(v -> {
+
+            Intent intent = new Intent(DetailProductActivity.this, CartActivity.class);
+
+            // Lấy thông tin sản phẩm
+            String productName = txtTitle.getText().toString();
+            String productPrice = txtPrice.getText().toString();
+            String productDescription = txtDescription.getText().toString();
+
+            // Lấy số lượng từ EditText
+            String quantityText = etQuantity.getText().toString();
+            int quantity = 0;
+
+            // Kiểm tra nếu số lượng là hợp lệ
+            if (!quantityText.isEmpty()) {
+                quantity = Integer.parseInt(quantityText);
+            }
+
+            // Xác định kích thước đã chọn hoặc mặc định là 250g
+            String size = btn250g.isSelected() ? "250g" : (btn500g.isSelected() ? "500g" : "250g");
+
+            // Chuyển thông tin sản phẩm, số lượng và kích thước sang CartActivity
+            intent.putExtra("productId", productId);
+            intent.putExtra("quantity", quantity);
+            intent.putExtra("size", size);  // Thêm kích thước
+
+            startActivity(intent);
+
+            Log.d("CartActivity", "Quantity: " + quantity + ", Size: " + size);
+        });
 
         // Sự kiện nhấn nút quay lại
         btnBack.setOnClickListener(v -> onBackPressed());

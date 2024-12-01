@@ -1,6 +1,7 @@
 package com.example.cake.Activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,8 +41,11 @@ public class CategoryDetail extends AppCompatActivity {
         recyclerViewProducts = findViewById(R.id.recyclerViewProducts);
 
         // Nhận dữ liệu từ Intent
+
+        // Nhận dữ liệu từ Intent
         String categoryName = getIntent().getStringExtra("categoryName");
         String categoryImageUrl = getIntent().getStringExtra("categoryImage");
+        String categoryId = getIntent().getStringExtra("categoryId");
 
         // Hiển thị tên và ảnh của danh mục
         categoryNameTextView.setText(categoryName);
@@ -56,32 +60,55 @@ public class CategoryDetail extends AppCompatActivity {
         recyclerViewProducts.setAdapter(productAdapter);
 
         // Lấy ID danh mục và tải sản phẩm
-        String categoryId = getIntent().getStringExtra("categoryId");
+
         loadProductsForCategory(categoryId);
     }
 
     private void loadProductsForCategory(String categoryId) {
-        // Giả sử bạn lấy danh sách sản phẩm từ Firebase hoặc cơ sở dữ liệu theo ID danh mục
-        // Ví dụ:
-        FirebaseDatabase.getInstance().getReference("products")
-                .orderByChild("categoryId")
-                .equalTo(categoryId)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        productList.clear();
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Product product = snapshot.getValue(Product.class);
-                            productList.add(product);
-                        }
-                        productAdapter.notifyDataSetChanged(); // Cập nhật RecyclerView
-                    }
+        // Log the category ID
+        Log.d("CategoryDetail", "Category ID: " + categoryId);
+        try {
+            FirebaseDatabase.getInstance().getReference("products")
+                    .orderByChild("category") // Filter by the "category" field
+                    .equalTo(categoryId) // Find products where "category" == categoryId
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            // Log the entire data snapshot returned from Firebase
+                            Log.d("CategoryDetail", "DataSnapshot: " + dataSnapshot.toString());
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Xử lý lỗi nếu cần
-                    }
-                });
+                            productList.clear();
+
+                            // Iterate through the returned products
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                // Convert Firebase data to Product object
+                                Product product = snapshot.getValue(Product.class);
+
+                                // Check each product to avoid null errors
+                                if (product != null) {
+                                    Log.d("CategoryDetail", "Loaded Product: " + product.getName());
+                                    productList.add(product);
+                                } else {
+                                    Log.e("CategoryDetail", "Product is null!");
+                                }
+                            }
+                            // Update RecyclerView
+                            productAdapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Log errors if Firebase fails
+                            Log.e("CategoryDetail", "DatabaseError: " + databaseError.getMessage());
+                        }
+                    });
+        } catch (Exception e) {
+            // Log any exceptions that occur while setting up the listener
+            Log.e("CategoryDetail", "Error adding value event listener: " + e.getMessage());
+        }
     }
+
+
+
 }
 

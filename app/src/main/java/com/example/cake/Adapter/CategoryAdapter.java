@@ -2,6 +2,7 @@ package com.example.cake.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,13 +55,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         // Thêm sự kiện nhấn vào item
         holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(holder.itemView.getContext(), "Bạn đã ấn vào loại sản phẩm", Toast.LENGTH_SHORT).show();
+
 
             // Chuyển đến Activity hiển thị chi tiết loại sản phẩm
             Intent intent = new Intent(holder.itemView.getContext(), CategoryDetail.class);
-            intent.putExtra("categoryName", category.getName());  // Truyền tên danh mục
-            intent.putExtra("categoryImage", category.getImageUrl());  // Truyền URL hình ảnh
+            intent.putExtra("categoryName", category.getName());
             intent.putExtra("categoryId", category.getId());
+            Log.d("CategoryDetails", "Category ID: " + category.getId());// Truyền tên danh mục
+            intent.putExtra("categoryImage", category.getImageUrl());  // Truyền URL hình ảnh
+
+
+
+
             holder.itemView.getContext().startActivity(intent);
         });
     }
@@ -106,6 +112,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 Intent intent = new Intent(context, CategoryDetail.class);
                 intent.putExtra("categoryName", category.getName());
                 intent.putExtra("categoryImage", category.getImageUrl());
+                intent.putExtra("categoryId", category.getId());
                 context.startActivity(intent);
             });
 

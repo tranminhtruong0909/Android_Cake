@@ -1,147 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- Tiêu đề -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quản Lý Nhân Sự"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingBottom="16dp"/>
+        android:hint="Tên sản phẩm" />
 
-    <!-- Hiển thị thời gian hiện tại -->
-    <TextClock
-        android:id="@+id/tcCurrentTime"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/edtPrice"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:format12Hour="hh:mm a"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingBottom="16dp"/>
+        android:hint="Giá sản phẩm"
+        android:inputType="numberDecimal" />
 
-    <!-- Họ tên nhân viên -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutHoTen"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/edtDescription"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Họ tên nhân viên"
-        app:layout_constraintTop_toBottomOf="@+id/tcCurrentTime"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp">
+        android:hint="Mô tả sản phẩm" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etHoTen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Ngày sinh -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutNgaySinh"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/edtImageUrl"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ngày sinh (dd/mm/yyyy)"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHoTen"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp">
+        android:hint="Đường dẫn hình ảnh" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNgaySinh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Chức vụ -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutChucVu"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/edtCategory"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Chức vụ"
-        app:layout_constraintTop_toBottomOf="@+id/layoutNgaySinh"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp">
+        android:hint="Danh mục sản phẩm" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etChucVu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Số điện thoại -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutSoDienThoai"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/edtStock"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Số điện thoại"
-        app:layout_constraintTop_toBottomOf="@+id/layoutChucVu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp">
+        android:hint="Số lượng sản phẩm"
+        android:inputType="number" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSoDienThoai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Email -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        app:layout_constraintTop_toBottomOf="@+id/layoutSoDienThoai"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Nút lưu thông tin -->
     <Button
-        android:id="@+id/btnLuuThongTin"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lưu Thông Tin"
-        app:layout_constraintTop_toBottomOf="@+id/layoutEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Thêm Sản Phẩm"
+        android:onClick="addProduct" />
+</LinearLayout>
